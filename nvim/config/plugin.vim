@@ -6,9 +6,9 @@ Plug 'iCyMind/NeoSolarized'
 Plug 'elmcast/elm-vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'sickill/vim-monokai'
-Plug 'jnurmine/Zenburn'
 Plug 'liuchengxu/graphviz.vim'
 Plug 'tpope/vim-fireplace'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 
@@ -16,7 +16,6 @@ call plug#end()
 " NERDTree
 """"""""""""""""""""
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
-
 
 """"""""""""""""""""
 " Graphviz
