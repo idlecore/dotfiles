@@ -1,1 +1,0 @@
-common/wallpaper/** filter=lfs diff=lfs merge=lfs -text
