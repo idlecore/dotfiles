@@ -1,0 +1,6 @@
+import = [
+    "~/dotfiles/common/alacritty/catppuccin-mocha.toml"
+]
+
+[window]
+opacity = 0.9
