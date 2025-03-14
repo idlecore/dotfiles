@@ -1,3 +1,5 @@
+local idlecore_common = require("idlecore.common")
+
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
@@ -5,6 +7,7 @@ vim.g.maplocalleader = ","
 require('idlecore.plugins')
 require('idlecore.mapping')
 require('idlecore.lsp')
+require('idlecore.autocmds')
 
 
 -- Colors
@@ -34,4 +37,6 @@ vim.opt.guifont = "Consolas:h11"
 -- ----------------------------------------------------------------------------
 -- If something is broken, it's probably this line.
 -- I need this to do svelte development on Powershell
-vim.opt.shellslash = true
+if idlecore_common.isWindows then
+    vim.opt.shellslash = true
+end

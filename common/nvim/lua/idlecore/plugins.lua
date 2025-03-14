@@ -30,9 +30,7 @@ local plugins = {
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
-                ensure_installed = {"c", "cpp", "lua", "vim",
-                "vimdoc", "javascript",
-                "typescript", "html"},
+                ensure_installed = {"c", "cpp", "lua", "vim", "vimdoc", "javascript", "typescript", "html"},
                 sync_install = true,
                 highlight = { enable = true }
             })
@@ -64,15 +62,39 @@ local plugins = {
     },
     {
         'windwp/nvim-autopairs',
-        event = "Insertenter",
+        event = "InsertEnter",
         opts = {}
     },
     {
         "Olical/conjure"
     },
+    {
+        "HiPhish/rainbow-delimiters.nvim"
+    },
+    {
+        "github/copilot.vim"
+    },
+    {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        dependencies = {
+            {"github/copilot.vim"},
+            {"nvim-lua/plenary.nvim", branch = "master"}
+        },
+        opts = {
+            mappings = {
+                close = {
+                    normal = 'q',
+                    insert = ''
+                },
+                show_diff = {
+                    full_diff = true
+                }
+            }
+        }
+    }
 }
 
-require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins)
 
 local actions = require("telescope.actions")
 require('telescope').setup{
@@ -91,3 +113,4 @@ require('telescope').setup{
     extensions = {
     }
 }
+

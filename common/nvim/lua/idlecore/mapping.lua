@@ -1,3 +1,6 @@
+local builtin = require('telescope.builtin')
+local idlecore_common = require("idlecore.common")
+
 local function noremap(mode, keypress, output)
     vim.api.nvim_set_keymap(mode, keypress, output, {noremap = true})
 end
@@ -28,17 +31,25 @@ noremap('n', '<Leader>l', ':Mason<CR>')
 -- Set dir to current file dir
 noremap('n', '<Leader>cd', ':cd %:p:h<CR>')
 
--- Open vim config
-noremap('n', '<Leader>vc', ':tabe ~/AppData/Local/nvim<CR>')
+if  idlecore_common.isWindows then
 
--- Open terminal at the position of the current file *WINDOWS*
-noremap('n', '<Leader>t', ':!wt pwsh -WorkingDirectory %:p:h<CR>')
+    -- Open vim config
+    noremap('n', '<Leader>vc', ':tabe ~/AppData/Local/nvim<CR>')
+
+    -- Open terminal at the position of the current file *WINDOWS*
+    noremap('n', '<Leader>t', ':!wt pwsh -WorkingDirectory %:p:h<CR>')
+
+else
+
+    -- Open vim config
+    noremap('n', '<Leader>vc', ':tabe ~/.config/nvim<CR>')
+
+end
 
 
 ------------------------------------------------------------------------------
 -- Telescope
 ------------------------------------------------------------------------------
-local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<Leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<Leader>fp', builtin.git_files, {})
 vim.keymap.set('n', '<Leader>fg', builtin.live_grep, {})
@@ -92,4 +103,24 @@ noremap('n', '<Leader>tc', 'mt0wlrx`t')
 -- Uncheck item
 noremap('n', '<Leader>tu', 'mt0wlr `t')
 
+
 ------------------------------------------------------------------------------
+-- Autocomplete
+------------------------------------------------------------------------------
+-- noremap('i', '<C-Enter>', )
+
+-- Copilot
+vim.keymap.set('i', '<C-Enter>', 'copilot#Accept("\\<CR>")', {
+    expr = true,
+    replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
+
+vim.keymap.set('i', '<C-l>', '<Plug>(copilot-next)')
+vim.keymap.set('i', '<C-h>', '<Plug>(copilot-previous)')
+vim.keymap.set('i', '<C-s>', '<Plug>(copilot-suggest)')
+
+vim.g.copilot_enabled = false
+
+noremap('n', '<Leader>cc', ':CopilotChat<CR>')
+noremap('n', '<Leader>cp', ':CopilotChatPrompt<CR>')
