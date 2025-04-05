@@ -1,6 +1,8 @@
-import = [
-    "~/dotfiles/common/alacritty/catppuccin-mocha.toml"
-]
 
 [window]
 opacity = 0.9
+
+[general]
+import = [
+    "~/dotfiles/common/alacritty/catppuccin-mocha.toml"
+]
