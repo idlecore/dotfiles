@@ -1,8 +1,9 @@
-
-[window]
-opacity = 0.9
-
-[general]
 import = [
     "~/dotfiles/common/alacritty/catppuccin-mocha.toml"
 ]
+
+[window]
+opacity = 0.9
+padding = { x = 1, y = 1 }
+dynamic_padding = true
+
