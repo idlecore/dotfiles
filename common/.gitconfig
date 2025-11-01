@@ -1,8 +1,9 @@
 [user]
 	email = clccmh@gmail.com
 	name = Carter Hay
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+[diff]
+	tool = nvimdiff
+[merge]
+	tool = nvimdiff
+[core]
+	editor = nvim
