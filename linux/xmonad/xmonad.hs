@@ -27,7 +27,6 @@ baseWorkspaces = map show [1..2]
 
 myWorkspaces :: [WorkspaceId]
 myWorkspaces = withScreens 4 baseWorkspaces
--- myWorkspaces = [marshall s vw | vw <- (map show [1..9]), s <- [0..(numScreens -1)]]
 
 myTerminal :: String
 myTerminal = "alacritty"
