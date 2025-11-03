@@ -36,7 +36,25 @@ vim.opt.guifont = "Consolas:h11"
 --                                     WARNING
 -- ----------------------------------------------------------------------------
 -- If something is broken, it's probably this line.
--- I need this to do svelte development on Powershell
+-- I need this to do Svelte development on PowerShell
 if idlecore_common.isWindows then
     vim.opt.shellslash = true
 end
+
+vim.diagnostic.config({
+    virtual_text = false,
+    virtual_lines = false,
+    float = {
+        border = "rounded",
+        focusable = false,
+        --style = "minimal",
+        --source = "always",
+        header = "",
+        prefix = "",
+        --anchor = "SE",
+    },
+})
+
+vim.cmd [[
+    autocmd CursorMoved * lua vim.diagnostic.open_float(nil, { focus = false })
+]]
