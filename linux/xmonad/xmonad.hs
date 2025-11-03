@@ -23,10 +23,13 @@ numScreens :: ScreenId
 numScreens = 4
 
 baseWorkspaces :: [WorkspaceId]
-baseWorkspaces = map show [1..2]
+baseWorkspaces = map show [1..9]
 
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = withScreens 4 baseWorkspaces
+-- myWorkspaces = withScreens 4 baseWorkspaces
+-- Idk if withScreens is the problem, but this was necessary
+-- TODO: look into this in more detail
+myWorkspaces = [marshall screen worksp | worksp <- baseWorkspaces, screen <- [0..(numScreens -1)]]
 
 myTerminal :: String
 myTerminal = "alacritty"
@@ -79,14 +82,14 @@ myKeybinds = [ ("M-t", spawn myTerminal)
 
 workspaceKeybinds :: [((KeyMask, KeySym), X ())]
 workspaceKeybinds = [ ((shiftmod .|. modMask def, key), windows $ onCurrentScreen func wsId)
-                      | (wsId, key) <- zip (map show [1..9]) [xK_1..xK_9]
+                      | (wsId, key) <- zip baseWorkspaces [xK_1..xK_9]
                       , (func, shiftmod) <- [(greedyView, 0), (shift, shiftMask)] ]
 
 -------------------------------------------------------------------------------
 -- Layout
 -------------------------------------------------------------------------------
 
-myLayout = spacingWithEdge 10 $ avoidStruts $
+myLayout = spacingWithEdge 8 $ avoidStruts $
     Tall 1 (3/100) (1/2) |||
     Tall 1 (3/100) (2/3) |||
     Full |||
@@ -106,8 +109,9 @@ main = xmonad . nav $ withEasySB mySB defToggleStrutsKey def
     , layoutHook = myLayout
     , manageHook = insertPosition End Newer <> manageHook def <+> manageDocks
     , logHook = updatePointer (0.5, 0.5) (0, 0)
-    , focusedBorderColor = "#b4befe"
-    , normalBorderColor = "#000000"
+    , focusedBorderColor = "#94e2d5"
+    , normalBorderColor = "#7f849c"
+    , borderWidth = 2
     }
     `additionalKeysP` myKeybinds
     `additionalKeys` workspaceKeybinds
