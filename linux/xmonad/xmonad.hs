@@ -102,6 +102,11 @@ myLayout = spacingWithEdge 8 $ avoidStruts $
 -- scratchpads = [NS "python" "python3"]
 
 
+myNav = navigation2DP def ("k", "h", "j", "l")
+            [ ("M-", windowGo)
+            , ("M-S-", windowSwap)
+            ] False
+
 main :: IO ()
 main = xmonad . nav $ withEasySB mySB defToggleStrutsKey def
     { terminal = myTerminal
