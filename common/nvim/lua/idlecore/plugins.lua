@@ -89,7 +89,9 @@ local plugins = {
                 show_diff = {
                     full_diff = true
                 }
-            }
+            },
+            auto_fold = true,
+
         }
     }
 }
