@@ -9,4 +9,4 @@ padding = { x = 2, y = 1 }
 dynamic_padding = true
 
 [font]
-size = 7
+size = 11
